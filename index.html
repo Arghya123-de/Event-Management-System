@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute of Engineering and Management | Campus Event Portal</title>
+    <link rel="icon" type="image/png" href="iem_logo.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+    <!-- Navigation Bar -->
+    <header class="navbar-wrapper">
+        <nav class="navbar container">
+            <div class="nav-brand">
+                <a href="#home" class="logo" title="Institute of Engineering and Management">
+                    <img src="iem_logo.png" alt="Institute of Engineering and Management Logo" class="logo-img">
+                    <div class="logo-text-group">
+                        <span class="logo-title">
+                            <span class="logo-title-full">Institute of Engineering and Management</span>
+                            <span class="logo-title-abbr">IEM Kolkata</span>
+                        </span>
+                        <span class="logo-subtitle">Campus Event Portal</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active" data-nav="home"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="#events" class="nav-link" data-nav="events"><i class="fa-solid fa-calendar-days"></i> Explore Events</a></li>
+                    <li><a href="#calendar-view" class="nav-link" data-nav="calendar-view"><i class="fa-solid fa-calendar"></i> Schedule</a></li>
+                    <li>
+                        <a href="#my-tickets" class="nav-link" data-nav="my-tickets">
+                            <i class="fa-solid fa-ticket"></i> My Tickets
+                            <span class="nav-badge" id="myTicketsBadge">0</span>
+                        </a>
+                    </li>
+                    <li><a href="#organizer" class="nav-link" data-nav="organizer"><i class="fa-solid fa-chart-pie"></i> Organizer Hub</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <div class="nav-clock" id="navClockContainer" title="Current Campus Time">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="navLiveClock">--:--:--</span>
+                    </div>
+                    <button class="btn btn-outline btn-sm" id="btnRoleSwitch" title="Switch between Student and Organizer view">
+                        <i class="fa-solid fa-user-shield"></i> <span id="currentRoleText">Student View</span>
+                    </button>
+                    <button class="btn btn-primary btn-sm" id="btnOpenCreateEvent">
+                        <i class="fa-solid fa-plus"></i> <span>Host Event</span>
+                    </button>
+                    <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
+                        <i class="fa-solid fa-moon" id="themeIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="hero-pill">
+                        <i class="fa-solid fa-bolt text-warning"></i>
+                        <span>Institute of Engineering and Management &bull; 2026 Academic Year</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Discover, Organize & Experience <span class="gradient-text">IEM Campus Life</span> Like Never Before.
+                    </h1>
+                    <p class="hero-subtitle">
+                        Official event management portal for the Institute of Engineering and Management (IEM). Explore technical symposiums, cultural fests, hackathons, sports tournaments, and workshops. Register instantly and generate digital entry passes!
+                    </p>
+                    
+                    <div class="hero-cta-group">
+                        <a href="#events" class="btn btn-primary btn-lg">
+                            <i class="fa-solid fa-compass"></i> Explore All Events
+                        </a>
+                        <button class="btn btn-glass btn-lg" id="btnHeroHost">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Host an Event
+                        </button>
+                        <button class="btn btn-outline btn-lg" id="btnSeedDemo">
+                            <i class="fa-solid fa-rotate-right"></i> Reset Demo Data
+                        </button>
+                    </div>
+
+                    <!-- Hero Stats Bar -->
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-indigo"><i class="fa-solid fa-calendar-check"></i></div>
+                            <div class="stat-info">
+                                <h3 id="statTotalEvents">0</h3>
+                                <p>Live Events</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-pink"><i class="fa-solid fa-users"></i></div>
+                            <div class="stat-info">
+                                <h3 id="statTotalRegistrations">0</h3>
+                                <p>Registrations</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-emerald"><i class="fa-solid fa-layer-group"></i></div>
+                            <div class="stat-info">
+                                <h3 id="statCategoriesCount">6</h3>
+                                <p>Categories</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-amber"><i class="fa-solid fa-ticket"></i></div>
+                            <div class="stat-info">
+                                <h3 id="statUserTickets">0</h3>
+                                <p>Your Passes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nearest Upcoming Event Spotlight & Digital Countdown Clock -->
+        <section class="nearest-event-section container" id="nearestEventSection">
+            <div class="nearest-event-card">
+                <div class="nearest-event-glow"></div>
+                <div class="nearest-event-header">
+                    <div class="clock-live-indicator">
+                        <span class="live-dot pulse"></span>
+                        <span class="live-label">NEAREST UPCOMING EVENT</span>
+                    </div>
+                    <div class="campus-current-time">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>Campus Time:</span>
+                        <strong id="liveCurrentClock">--:--:--</strong>
+                    </div>
+                </div>
+
+                <div class="nearest-event-content">
+                    <div class="nearest-event-info">
+                        <div class="nearest-event-meta">
+                            <span class="badge badge-primary-soft" id="nearestEventCategory">Technical</span>
+                            <span class="nearest-event-date" id="nearestEventDateTime">
+                                <i class="fa-regular fa-calendar"></i> <span id="nearestEventDateText">Loading schedule...</span>
+                            </span>
+                        </div>
+                        <h3 class="nearest-event-title" id="nearestEventTitle" title="Click to view full event details">Loading nearest event...</h3>
+                        <p class="nearest-event-venue" id="nearestEventVenue">
+                            <i class="fa-solid fa-location-dot"></i> <span id="nearestEventVenueText">Loading venue...</span>
+                        </p>
+                        <div class="nearest-event-actions">
+                            <button class="btn btn-primary btn-sm" id="btnNearestRegister">
+                                <i class="fa-solid fa-ticket"></i> Register Now
+                            </button>
+                            <button class="btn btn-outline btn-sm" id="btnNearestDetails">
+                                <i class="fa-solid fa-circle-info"></i> Event Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="nearest-clock-container">
+                        <div class="clock-status-bar">
+                            <i class="fa-solid fa-stopwatch"></i>
+                            <span id="countdownStatusLabel">EVENT STARTS IN</span>
+                        </div>
+                        <div class="digital-countdown-display" id="nearestCountdownClock" aria-label="Digital countdown clock to nearest event">
+                            <div class="countdown-unit">
+                                <div class="digit-box" id="cntDays">00</div>
+                                <span class="unit-label">DAYS</span>
+                            </div>
+                            <div class="countdown-separator">:</div>
+                            <div class="countdown-unit">
+                                <div class="digit-box" id="cntHours">00</div>
+                                <span class="unit-label">HOURS</span>
+                            </div>
+                            <div class="countdown-separator">:</div>
+                            <div class="countdown-unit">
+                                <div class="digit-box" id="cntMins">00</div>
+                                <span class="unit-label">MINUTES</span>
+                            </div>
+                            <div class="countdown-separator">:</div>
+                            <div class="countdown-unit">
+                                <div class="digit-box" id="cntSecs">00</div>
+                                <span class="unit-label">SECONDS</span>
+                            </div>
+                        </div>
+                        <div class="clock-footer-hint" id="nearestEventHint">
+                            <i class="fa-solid fa-bolt text-warning"></i> Real-time digital clock synced with IEM campus schedule
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Category Filter Pills -->
+        <section class="category-strip container">
+            <div class="category-pills" id="categoryPillList">
+                <button class="cat-pill active" data-category="all">
+                    <i class="fa-solid fa-globe"></i> All Events
+                </button>
+                <button class="cat-pill" data-category="Technical">
+                    <i class="fa-solid fa-laptop-code"></i> Technical & Hackathons
+                </button>
+                <button class="cat-pill" data-category="Cultural">
+                    <i class="fa-solid fa-masks-theater"></i> Cultural & Arts
+                </button>
+                <button class="cat-pill" data-category="Workshop">
+                    <i class="fa-solid fa-chalkboard-user"></i> Workshops & Seminars
+                </button>
+                <button class="cat-pill" data-category="Sports">
+                    <i class="fa-solid fa-trophy"></i> Sports & E-Sports
+                </button>
+                <button class="cat-pill" data-category="Social">
+                    <i class="fa-solid fa-handshake-angle"></i> Social & Clubs
+                </button>
+            </div>
+        </section>
+
+        <!-- Events Explorer Section -->
+        <section class="events-section container" id="events">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag"><i class="fa-solid fa-fire"></i> What's Happening</span>
+                    <h2 class="section-title">Explore Campus Events</h2>
+                    <p class="section-desc">Search, filter, and register for upcoming college activities.</p>
+                </div>
+                <!-- View switch and count -->
+                <div class="section-header-actions">
+                    <span class="results-count" id="resultsCount">Showing 0 events</span>
+                    <div class="view-toggles">
+                        <button class="view-btn active" id="viewGridBtn" title="Grid View">
+                            <i class="fa-solid fa-grip"></i>
+                        </button>
+                        <button class="view-btn" id="viewListBtn" title="List View">
+                            <i class="fa-solid fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter and Search Bar -->
+            <div class="filter-bar card">
+                <div class="search-input-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search by event title, venue, club or speaker..." autocomplete="off">
+                    <button class="clear-search-btn" id="clearSearchBtn" title="Clear Search">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="filter-controls">
+                    <!-- Category dropdown -->
+                    <div class="select-group">
+                        <label for="filterCategory"><i class="fa-solid fa-tag"></i> Category</label>
+                        <select id="filterCategory">
+                            <option value="all">All Categories</option>
+                            <option value="Technical">Technical & Hackathons</option>
+                            <option value="Cultural">Cultural & Arts</option>
+                            <option value="Workshop">Workshops & Seminars</option>
+                            <option value="Sports">Sports & E-Sports</option>
+                            <option value="Social">Social & Clubs</option>
+                        </select>
+                    </div>
+
+                    <!-- Timing/Status filter -->
+                    <div class="select-group">
+                        <label for="filterStatus"><i class="fa-regular fa-clock"></i> Timeline</label>
+                        <select id="filterStatus">
+                            <option value="all">All Events</option>
+                            <option value="upcoming" selected>Upcoming Only</option>
+                            <option value="this-week">This Week</option>
+                            <option value="past">Past Events</option>
+                        </select>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="select-group">
+                        <label for="filterPrice"><i class="fa-solid fa-indian-rupee-sign"></i> Entry Fee</label>
+                        <select id="filterPrice">
+                            <option value="all">All Pricing</option>
+                            <option value="free">Free Events</option>
+                            <option value="paid">Paid Events</option>
+                        </select>
+                    </div>
+
+                    <!-- Sort dropdown -->
+                    <div class="select-group">
+                        <label for="sortBy"><i class="fa-solid fa-arrow-down-wide-short"></i> Sort By</label>
+                        <select id="sortBy">
+                            <option value="date-asc">Date: Soonest First</option>
+                            <option value="date-desc">Date: Furthest First</option>
+                            <option value="popularity">Most Popular</option>
+                            <option value="name-asc">Title: A to Z</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-outline btn-reset-filters" id="btnResetFilters" title="Reset all filters">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Events Grid -->
+            <div class="events-grid" id="eventsContainer">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state hidden" id="emptyState">
+                <div class="empty-icon"><i class="fa-regular fa-calendar-xmark"></i></div>
+                <h3>No matching events found</h3>
+                <p>Try tweaking your search term, category filters, or date range.</p>
+                <button class="btn btn-primary" id="btnEmptyReset">Reset Filters</button>
+            </div>
+        </section>
+
+        <!-- Interactive Calendar & Schedule Section -->
+        <section class="calendar-section container" id="calendar-view">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag"><i class="fa-regular fa-calendar"></i> Interactive Schedule</span>
+                    <h2 class="section-title">Campus Event Calendar</h2>
+                    <p class="section-desc">Click any marked date to see events happening on that day.</p>
+                </div>
+            </div>
+
+            <div class="calendar-layout card">
+                <div class="calendar-widget">
+                    <div class="calendar-nav">
+                        <button class="icon-btn" id="calPrevMonth" aria-label="Previous month"><i class="fa-solid fa-chevron-left"></i></button>
+                        <h3 class="calendar-title" id="calMonthYear">October 2026</h3>
+                        <button class="icon-btn" id="calNextMonth" aria-label="Next month"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                    </div>
+                    <div class="calendar-days" id="calendarDaysGrid">
+                        <!-- Injected via JS -->
+                    </div>
+                    <div class="calendar-legend">
+                        <span class="legend-item"><span class="legend-dot has-event"></span> Event Day</span>
+                        <span class="legend-item"><span class="legend-dot today"></span> Today</span>
+                        <span class="legend-item"><span class="legend-dot selected"></span> Selected</span>
+                    </div>
+                </div>
+
+                <div class="calendar-events-preview">
+                    <div class="preview-header">
+                        <h4 id="calSelectedDateText">Events on Selected Day</h4>
+                        <span class="badge badge-primary-soft" id="calSelectedCount">0 Events</span>
+                    </div>
+                    <div class="preview-list" id="calEventsList">
+                        <!-- Selected Day Events list -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Tickets & Registrations Section -->
+        <section class="tickets-section container" id="my-tickets">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag"><i class="fa-solid fa-ticket"></i> Student Passbook</span>
+                    <h2 class="section-title">My Registered Events</h2>
+                    <p class="section-desc">Manage your event bookings, view passes, and show QR codes for campus entry.</p>
+                </div>
+            </div>
+
+            <div class="tickets-container" id="myTicketsContainer">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <div class="empty-state hidden" id="emptyTicketsState">
+                <div class="empty-icon"><i class="fa-solid fa-ticket-simple"></i></div>
+                <h3>No event registrations yet</h3>
+                <p>Browse through the campus events and reserve your spot today!</p>
+                <a href="#events" class="btn btn-primary"><i class="fa-solid fa-compass"></i> Browse Events</a>
+            </div>
+        </section>
+
+        <!-- Organizer / Admin Hub Section -->
+        <section class="organizer-section container" id="organizer">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag"><i class="fa-solid fa-shield-halved"></i> Faculty & Club Portal</span>
+                    <h2 class="section-title">Organizer Management Hub</h2>
+                    <p class="section-desc">Create events, manage capacity, track student registrations, and export attendee rosters.</p>
+                </div>
+                <div class="section-header-actions">
+                    <button class="btn btn-primary" id="btnHubCreateEvent">
+                        <i class="fa-solid fa-calendar-plus"></i> Create New Event
+                    </button>
+                    <button class="btn btn-outline" id="btnExportAllData" title="Export all event data as JSON backup">
+                        <i class="fa-solid fa-file-export"></i> Backup Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Organizer Metrics -->
+            <div class="organizer-stats-grid">
+                <div class="dash-stat-card card">
+                    <div class="dash-stat-icon bg-indigo"><i class="fa-solid fa-bullhorn"></i></div>
+                    <div>
+                        <span class="dash-stat-label">Total Events</span>
+                        <h3 class="dash-stat-num" id="dashTotalEvents">0</h3>
+                    </div>
+                </div>
+                <div class="dash-stat-card card">
+                    <div class="dash-stat-icon bg-emerald"><i class="fa-solid fa-user-check"></i></div>
+                    <div>
+                        <span class="dash-stat-label">Total Attendees</span>
+                        <h3 class="dash-stat-num" id="dashTotalAttendees">0</h3>
+                    </div>
+                </div>
+                <div class="dash-stat-card card">
+                    <div class="dash-stat-icon bg-amber"><i class="fa-solid fa-percent"></i></div>
+                    <div>
+                        <span class="dash-stat-label">Avg Attendance Capacity</span>
+                        <h3 class="dash-stat-num" id="dashAvgCapacity">0%</h3>
+                    </div>
+                </div>
+                <div class="dash-stat-card card">
+                    <div class="dash-stat-icon bg-pink"><i class="fa-solid fa-receipt"></i></div>
+                    <div>
+                        <span class="dash-stat-label">Collected Fees</span>
+                        <h3 class="dash-stat-num" id="dashTotalRevenue">₹0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Management Table -->
+            <div class="table-responsive card">
+                <div class="table-toolbar">
+                    <div class="table-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="organizerSearchInput" placeholder="Search managed events...">
+                    </div>
+                    <span class="table-hint"><i class="fa-solid fa-circle-info"></i> Click "Attendees" to take attendance or export CSV</span>
+                </div>
+                <table class="data-table" id="organizerEventsTable">
+                    <thead>
+                        <tr>
+                            <th>Event Details</th>
+                            <th>Category</th>
+                            <th>Date & Time</th>
+                            <th>Venue</th>
+                            <th>Capacity / Seats</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="organizerTableBody">
+                        <!-- Injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <img src="iem_logo.png" alt="Institute of Engineering and Management Logo" class="footer-logo-img">
+                    <div class="logo-text-group">
+                        <span class="logo-title footer-logo-title">Institute of Engineering and Management</span>
+                        <span class="logo-subtitle">IEM Campus Event Portal</span>
+                    </div>
+                </div>
+                <p>Official Event Management Portal for the Institute of Engineering and Management (IEM), Kolkata. Empowering students, faculty, and clubs to discover, coordinate, and experience campus life.</p>
+                <div class="footer-badges">
+                    <span class="badge badge-outline"><i class="fa-solid fa-building-columns"></i> IEM Kolkata</span>
+                    <span class="badge badge-outline"><i class="fa-solid fa-calendar-check"></i> Campus Events</span>
+                    <span class="badge badge-outline"><i class="fa-solid fa-shield-halved"></i> Official Portal</span>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home Dashboard</a></li>
+                    <li><a href="#events">Upcoming Events</a></li>
+                    <li><a href="#calendar-view">Event Calendar</a></li>
+                    <li><a href="#my-tickets">My Digital Passes</a></li>
+                    <li><a href="#organizer">Organizer Hub</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#events" data-quick-cat="Technical">Technical & Hackathons</a></li>
+                    <li><a href="#events" data-quick-cat="Cultural">Cultural & Music Fests</a></li>
+                    <li><a href="#events" data-quick-cat="Workshop">Guest Lectures & Workshops</a></li>
+                    <li><a href="#events" data-quick-cat="Sports">Sports Tournaments</a></li>
+                    <li><a href="#events" data-quick-cat="Social">Student Clubs & Societies</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-bottom-info">
+                <h4>Institute of Engineering and Management</h4>
+                <p>Department of Computer Science & Engineering / Information Technology</p>
+                <p>Designed for college campus event coordination, student registration, dynamic digital passes, and faculty tracking.</p>
+                <div class="demo-actions">
+                    <button class="btn btn-outline btn-xs" id="footerResetBtn">
+                        <i class="fa-solid fa-arrows-rotate"></i> Reset All Demo Data
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <p>&copy; 2026 Institute of Engineering and Management (IEM). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- 1. Event Details Modal -->
+    <div class="modal-overlay hidden" id="modalEventDetails">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-header">
+                <div class="modal-tags" id="modalDetailBadges">
+                    <!-- Badges injected -->
+                </div>
+                <button class="modal-close-btn" data-close-modal title="Close">&times;</button>
+            </div>
+            <div class="modal-body" id="modalDetailBody">
+                <!-- Content injected via JS -->
+            </div>
+            <div class="modal-footer" id="modalDetailFooter">
+                <!-- Action buttons -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Event Registration Modal -->
+    <div class="modal-overlay hidden" id="modalRegister">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title">Event Registration</h3>
+                    <p class="modal-subtitle" id="regEventTitle">Confirm your spot</p>
+                </div>
+                <button class="modal-close-btn" data-close-modal title="Close">&times;</button>
+            </div>
+            <form id="formRegister" novalidate>
+                <div class="modal-body">
+                    <input type="hidden" id="regEventId">
+                    
+                    <div class="alert alert-info">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <div>Entry pass with a dynamic QR code will be generated upon submission.</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regStudentName" class="required">Full Name</label>
+                            <input type="text" id="regStudentName" required placeholder="e.g. Rahul Sharma" autocomplete="name">
+                            <div class="form-error">Please enter your full name</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regStudentRoll" class="required">College Roll / Student ID</label>
+                            <input type="text" id="regStudentRoll" required placeholder="e.g. CS2026-042">
+                            <div class="form-error">Please enter your roll number</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regStudentEmail" class="required">Email Address</label>
+                            <input type="email" id="regStudentEmail" required placeholder="rahul@college.edu" autocomplete="email">
+                            <div class="form-error">Please enter a valid email address</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regStudentPhone" class="required">Mobile Number</label>
+                            <input type="tel" id="regStudentPhone" required placeholder="e.g. 9876543210" pattern="[0-9]{10}">
+                            <div class="form-error">Please enter a 10-digit mobile number</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regDepartment" class="required">Department / Branch</label>
+                            <select id="regDepartment" required>
+                                <option value="">Select Branch</option>
+                                <option value="Computer Science & Engineering">Computer Science & Engg</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Electronics & Communication">Electronics & Comm.</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Electrical Engineering">Electrical Engineering</option>
+                                <option value="Civil Engineering">Civil Engineering</option>
+                                <option value="Management & MBA">Management & MBA</option>
+                                <option value="Basic Sciences / Other">Basic Sciences / Other</option>
+                            </select>
+                            <div class="form-error">Select your department</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regYear" class="required">Academic Year</label>
+                            <select id="regYear" required>
+                                <option value="">Select Year</option>
+                                <option value="1st Year">1st Year (Freshman)</option>
+                                <option value="2nd Year">2nd Year (Sophomore)</option>
+                                <option value="3rd Year">3rd Year (Junior)</option>
+                                <option value="4th Year">4th Year (Senior)</option>
+                                <option value="Postgraduate">Postgraduate</option>
+                            </select>
+                            <div class="form-error">Select your year</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regTicketType">Participation Type</label>
+                        <select id="regTicketType">
+                            <option value="General Attendee">General Attendee (Standard Entry)</option>
+                            <option value="Active Participant / Team">Competitor / Active Participant</option>
+                            <option value="Volunteer / Staff">Event Volunteer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regRemarks">Special Dietary / Access Requirements (Optional)</label>
+                        <textarea id="regRemarks" rows="2" placeholder="Any accommodations, dietary preferences, or team member names..."></textarea>
+                    </div>
+
+                    <div class="booking-summary-box">
+                        <div class="summary-line">
+                            <span>Ticket Category:</span>
+                            <strong id="regSummaryFee">FREE</strong>
+                        </div>
+                        <div class="summary-line">
+                            <span>Seats Remaining:</span>
+                            <span id="regSummarySeats">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnConfirmRegister">
+                        <i class="fa-solid fa-check"></i> Complete Registration
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 3. Digital Ticket Pass Modal -->
+    <div class="modal-overlay hidden" id="modalDigitalTicket">
+        <div class="modal-dialog modal-ticket-dialog">
+            <div class="modal-header no-border">
+                <span class="badge badge-success"><i class="fa-solid fa-circle-check"></i> Registration Confirmed</span>
+                <button class="modal-close-btn" data-close-modal title="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Printable Digital Ticket -->
+                <div class="ticket-wrapper" id="printableTicket">
+                    <div class="ticket-card">
+                        <div class="ticket-header">
+                            <div class="ticket-brand">
+                                <img src="iem_logo.png" alt="IEM Logo" class="ticket-logo-img">
+                                <span>Institute of Engineering &amp; Management Pass</span>
+                            </div>
+                            <div class="ticket-id" id="tktPassId">TKT-2026-0000</div>
+                        </div>
+                        
+                        <div class="ticket-hero-banner" id="tktBannerImg">
+                            <!-- Injected background or image -->
+                        </div>
+
+                        <div class="ticket-body">
+                            <span class="badge badge-primary-soft" id="tktCategory">Technical</span>
+                            <h3 class="ticket-event-title" id="tktEventTitle">Hackathon 2026</h3>
+                            
+                            <div class="ticket-grid">
+                                <div class="ticket-cell">
+                                    <span class="label">Date & Time</span>
+                                    <strong id="tktDateTime">Oct 15, 2026 &bull; 10:00 AM</strong>
+                                </div>
+                                <div class="ticket-cell">
+                                    <span class="label">Venue / Hall</span>
+                                    <strong id="tktVenue">Main Auditorium</strong>
+                                </div>
+                                <div class="ticket-cell">
+                                    <span class="label">Attendee Name</span>
+                                    <strong id="tktStudentName">Rahul Sharma</strong>
+                                </div>
+                                <div class="ticket-cell">
+                                    <span class="label">Roll Number</span>
+                                    <strong id="tktStudentRoll">CS2026-042</strong>
+                                </div>
+                                <div class="ticket-cell">
+                                    <span class="label">Department</span>
+                                    <strong id="tktDept">CSE &bull; 3rd Year</strong>
+                                </div>
+                                <div class="ticket-cell">
+                                    <span class="label">Type / Fee</span>
+                                    <strong id="tktFee">Standard &bull; Free</strong>
+                                </div>
+                            </div>
+
+                            <div class="ticket-perforation">
+                                <div class="notch notch-left"></div>
+                                <div class="dashed-line"></div>
+                                <div class="notch notch-right"></div>
+                            </div>
+
+                            <div class="ticket-footer">
+                                <div class="qr-mockup">
+                                    <!-- Dynamic SVG QR Code Simulation -->
+                                    <svg viewBox="0 0 100 100" class="qr-svg" width="90" height="90">
+                                        <!-- Outer framing -->
+                                        <rect width="100" height="100" fill="#ffffff" rx="6"/>
+                                        <!-- Top-left finder -->
+                                        <rect x="8" y="8" width="28" height="28" fill="#1e293b" rx="4"/>
+                                        <rect x="14" y="14" width="16" height="16" fill="#ffffff"/>
+                                        <rect x="18" y="18" width="8" height="8" fill="#1e293b"/>
+                                        <!-- Top-right finder -->
+                                        <rect x="64" y="8" width="28" height="28" fill="#1e293b" rx="4"/>
+                                        <rect x="70" y="14" width="16" height="16" fill="#ffffff"/>
+                                        <rect x="74" y="18" width="8" height="8" fill="#1e293b"/>
+                                        <!-- Bottom-left finder -->
+                                        <rect x="8" y="64" width="28" height="28" fill="#1e293b" rx="4"/>
+                                        <rect x="14" y="70" width="16" height="16" fill="#ffffff"/>
+                                        <rect x="18" y="74" width="8" height="8" fill="#1e293b"/>
+                                        <!-- QR Data Mock patterns -->
+                                        <rect x="42" y="10" width="6" height="12" fill="#1e293b"/>
+                                        <rect x="52" y="14" width="6" height="6" fill="#1e293b"/>
+                                        <rect x="42" y="26" width="16" height="6" fill="#1e293b"/>
+                                        <rect x="12" y="42" width="6" height="16" fill="#1e293b"/>
+                                        <rect x="24" y="42" width="12" height="6" fill="#1e293b"/>
+                                        <rect x="42" y="42" width="8" height="8" fill="#4f46e5"/>
+                                        <rect x="56" y="42" width="6" height="14" fill="#1e293b"/>
+                                        <rect x="68" y="42" width="14" height="6" fill="#1e293b"/>
+                                        <rect x="86" y="42" width="6" height="12" fill="#1e293b"/>
+                                        <rect x="42" y="56" width="10" height="6" fill="#1e293b"/>
+                                        <rect x="60" y="60" width="8" height="8" fill="#1e293b"/>
+                                        <rect x="74" y="56" width="6" height="18" fill="#1e293b"/>
+                                        <rect x="42" y="70" width="6" height="20" fill="#1e293b"/>
+                                        <rect x="54" y="76" width="14" height="6" fill="#1e293b"/>
+                                        <rect x="74" y="80" width="18" height="10" fill="#1e293b"/>
+                                        <rect x="54" y="88" width="8" height="6" fill="#1e293b"/>
+                                    </svg>
+                                </div>
+                                <div class="ticket-instructions">
+                                    <p class="scan-text"><i class="fa-solid fa-qrcode"></i> Scan at venue gate</p>
+                                    <p class="small-text">Bring your college ID card along with this electronic pass for seamless gate validation.</p>
+                                    <p class="barcode-sim">||||| | |||| ||| |||||| | || |||||||| |||| |</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-close-modal>Close</button>
+                <button type="button" class="btn btn-primary" id="btnPrintTicket">
+                    <i class="fa-solid fa-print"></i> Print / Save Pass
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Create / Edit Event Modal (Organizer) -->
+    <div class="modal-overlay hidden" id="modalCreateEvent">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="createEventModalTitle">Host a Campus Event</h3>
+                    <p class="modal-subtitle">Publish event details for college students and faculty</p>
+                </div>
+                <button class="modal-close-btn" data-close-modal title="Close">&times;</button>
+            </div>
+            <form id="formEventCreate" novalidate>
+                <div class="modal-body">
+                    <input type="hidden" id="editEventId">
+
+                    <div class="form-row">
+                        <div class="form-group flex-2">
+                            <label for="eventTitle" class="required">Event Title</label>
+                            <input type="text" id="eventTitle" required placeholder="e.g. National Hackathon 2026">
+                            <div class="form-error">Please provide an event title</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventCategory" class="required">Category</label>
+                            <select id="eventCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Technical">Technical & Hackathons</option>
+                                <option value="Cultural">Cultural & Arts</option>
+                                <option value="Workshop">Workshops & Seminars</option>
+                                <option value="Sports">Sports & E-Sports</option>
+                                <option value="Social">Social & Clubs</option>
+                            </select>
+                            <div class="form-error">Select category</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventDate" class="required">Event Date</label>
+                            <input type="date" id="eventDate" required>
+                            <div class="form-error">Select a valid date</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventStartTime" class="required">Start Time</label>
+                            <input type="time" id="eventStartTime" required>
+                            <div class="form-error">Select start time</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventEndTime" class="required">End Time</label>
+                            <input type="time" id="eventEndTime" required>
+                            <div class="form-error">Select end time</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-2">
+                            <label for="eventVenue" class="required">Venue / Hall / Room</label>
+                            <input type="text" id="eventVenue" required placeholder="e.g. Main Seminar Hall B, Campus Block 3">
+                            <div class="form-error">Venue is required</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventOrganizer" class="required">Organizer / Club</label>
+                            <input type="text" id="eventOrganizer" required placeholder="e.g. IEEE Student Branch / Robotics Club">
+                            <div class="form-error">Organizer name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventCapacity" class="required">Maximum Capacity (Seats)</label>
+                            <input type="number" id="eventCapacity" required min="1" max="5000" placeholder="e.g. 150">
+                            <div class="form-error">Enter maximum seats (1-5000)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventPriceType" class="required">Entry Type</label>
+                            <select id="eventPriceType" required>
+                                <option value="free">Free Entry</option>
+                                <option value="paid">Paid Ticket</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="groupEventPrice">
+                            <label for="eventPrice">Price per ticket (₹)</label>
+                            <input type="number" id="eventPrice" min="0" placeholder="0" value="0">
+                        </div>
+                    </div>
+
+                    <!-- Preset Image Selectors or Custom URL -->
+                    <div class="form-group">
+                        <label for="eventImageUrl">Banner Image URL</label>
+                        <input type="url" id="eventImageUrl" placeholder="https://images.unsplash.com/... or choose preset below">
+                        <div class="preset-images-group">
+                            <span class="preset-label">Quick Themes:</span>
+                            <button type="button" class="btn-preset-img" data-img="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80">💻 Tech</button>
+                            <button type="button" class="btn-preset-img" data-img="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80">🎉 Cultural</button>
+                            <button type="button" class="btn-preset-img" data-img="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80">🎤 Seminar</button>
+                            <button type="button" class="btn-preset-img" data-img="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80">🏆 Sports</button>
+                            <button type="button" class="btn-preset-img" data-img="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80">🤝 Workshop</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventDescription" class="required">Event Description</label>
+                        <textarea id="eventDescription" rows="3" required placeholder="Describe the objectives, highlights, eligibility criteria, and guest speakers..."></textarea>
+                        <div class="form-error">Please write a brief description</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventAgenda">Schedule / Agenda (Optional)</label>
+                        <textarea id="eventAgenda" rows="2" placeholder="e.g. 10:00 AM - Keynote Address&#10;11:30 AM - Round 1 Coding&#10;03:00 PM - Final Evaluation"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventTags">Tags (Comma-separated)</label>
+                        <input type="text" id="eventTags" placeholder="e.g. Coding, AI, Robotics, Certificate, Prize">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnSubmitEvent">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Save & Publish
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 5. Attendee Roster & Check-in Modal (Organizer) -->
+    <div class="modal-overlay hidden" id="modalAttendees">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title">Attendee Roster & Gate Check-in</h3>
+                    <p class="modal-subtitle" id="rosterEventSubtitle">Event Name &bull; 0 Registered</p>
+                </div>
+                <button class="modal-close-btn" data-close-modal title="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="roster-toolbar">
+                    <div class="roster-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="rosterSearchInput" placeholder="Filter attendees by name, roll no, or branch...">
+                    </div>
+                    <div class="roster-actions">
+                        <button class="btn btn-success btn-sm" id="btnExportCSV">
+                            <i class="fa-solid fa-file-csv"></i> Export to CSV
+                        </button>
+                        <button class="btn btn-outline btn-sm" id="btnPrintRoster">
+                            <i class="fa-solid fa-print"></i> Print Roster
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive roster-table-box">
+                    <table class="data-table" id="rosterTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ticket ID</th>
+                                <th>Student Name</th>
+                                <th>Roll Number</th>
+                                <th>Branch & Year</th>
+                                <th>Contact</th>
+                                <th>Check-in Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rosterTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="empty-state hidden" id="emptyRosterState">
+                    <div class="empty-icon"><i class="fa-solid fa-users-slash"></i></div>
+                    <h4>No attendees registered yet</h4>
+                    <p>Registrations will appear here in real-time as students sign up.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="roster-summary-counts" id="rosterCounts">
+                    <span>Total Registered: <strong>0</strong></span> &bull; 
+                    <span>Checked In: <strong class="text-success">0</strong></span> &bull; 
+                    <span>Pending: <strong class="text-warning">0</strong></span>
+                </div>
+                <button type="button" class="btn btn-outline" data-close-modal>Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Confirmation Dialog Modal -->
+    <div class="modal-overlay hidden" id="modalConfirm">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-header">
+                <h3 class="modal-title" id="confirmTitle">Confirm Action</h3>
+                <button class="modal-close-btn" data-close-modal title="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">Are you sure you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmAction">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- JavaScript Application Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
