@@ -1836,18 +1836,44 @@
         // Mobile Hamburger menu toggle
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const navMenu = document.getElementById('navMenu');
-        hamburgerBtn?.addEventListener('click', () => {
-            navMenu.classList.toggle('open');
+
+        const closeMobileNav = () => {
+            if (navMenu && navMenu.classList.contains('open')) {
+                navMenu.classList.remove('open');
+                hamburgerBtn?.setAttribute('aria-expanded', 'false');
+                const icon = hamburgerBtn?.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-bars';
+            }
+        };
+
+        hamburgerBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = navMenu.classList.toggle('open');
+            hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            const icon = hamburgerBtn.querySelector('i');
+            if (icon) {
+                icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+            }
         });
 
         // Close mobile nav on link click
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
+                closeMobileNav();
                 // Active link highlight
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
             });
+        });
+
+        // Close mobile nav when clicking outside navbar
+        document.addEventListener('click', (e) => {
+            if (navMenu && navMenu.classList.contains('open')) {
+                const isInsideNav = navMenu.contains(e.target) || hamburgerBtn?.contains(e.target);
+                if (!isInsideNav) {
+                    closeMobileNav();
+                }
+            }
         });
 
         // Footer category quick links

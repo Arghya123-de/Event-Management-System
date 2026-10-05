@@ -17,7 +17,7 @@
 <body data-theme="light">
     <!-- Navigation Bar -->
     <header class="navbar-wrapper">
-        <nav class="navbar container">
+        <nav class="navbar" id="mainNavbar">
             <div class="nav-brand">
                 <a href="#home" class="logo" title="Institute of Engineering and Management">
                     <img src="iem_logo.png" alt="Institute of Engineering and Management Logo" class="logo-img">
@@ -33,16 +33,16 @@
 
             <div class="nav-menu" id="navMenu">
                 <ul class="nav-links">
-                    <li><a href="#home" class="nav-link active" data-nav="home"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li><a href="#events" class="nav-link" data-nav="events"><i class="fa-solid fa-calendar-days"></i> Explore Events</a></li>
-                    <li><a href="#calendar-view" class="nav-link" data-nav="calendar-view"><i class="fa-solid fa-calendar"></i> Schedule</a></li>
+                    <li><a href="#home" class="nav-link active" data-nav="home"><i class="fa-solid fa-house"></i> <span>Home</span></a></li>
+                    <li><a href="#events" class="nav-link" data-nav="events"><i class="fa-solid fa-calendar-days"></i> <span>Explore Events</span></a></li>
+                    <li><a href="#calendar-view" class="nav-link" data-nav="calendar-view"><i class="fa-solid fa-calendar"></i> <span>Schedule</span></a></li>
                     <li>
                         <a href="#my-tickets" class="nav-link" data-nav="my-tickets">
-                            <i class="fa-solid fa-ticket"></i> My Tickets
+                            <i class="fa-solid fa-ticket"></i> <span>My Tickets</span>
                             <span class="nav-badge" id="myTicketsBadge">0</span>
                         </a>
                     </li>
-                    <li><a href="#organizer" class="nav-link" data-nav="organizer"><i class="fa-solid fa-chart-pie"></i> Organizer Hub</a></li>
+                    <li><a href="#organizer" class="nav-link" data-nav="organizer"><i class="fa-solid fa-chart-pie"></i> <span>Organizer Hub</span></a></li>
                 </ul>
 
                 <div class="nav-actions">
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu">
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </nav>
